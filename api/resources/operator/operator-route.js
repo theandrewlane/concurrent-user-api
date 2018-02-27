@@ -7,20 +7,20 @@ const router = express.Router();
 
 router
   .route('/')
-  .get(async(req, res, next) => {
+  .get(async (req, res, next) => {
     try {
-      const opers = await Operator.getOperators();
+      const opers = await Operator.listAll();
       const transformedUsers = opers.map(oper => oper.transform());
       res.json(transformedUsers);
     } catch (error) {
       next(error);
     }
   })
-  .patch(async(req, res, next) => {
+  .post(async (req, res, next) => {
     try {
-      const operator = req.params.operator;
-      const testOperator = req.params.testOperator;
-      await Operator.setTestOperatorAvailable(operator, testOperator);
+      // const operator = await Operator.getAvailableOperByType(req.body.operator_type_id);
+      const operator = Operator.listAll();
+      console.log(operator);
       res.status(httpStatus.OK);
       res.json(req.body);
     } catch (error) {
@@ -28,14 +28,27 @@ router
     }
   });
 
-router.route('/:id')
-  .get(async(req, res, next) => {
+router
+  .route('/:id')
+  .get(async (req, res, next) => {
     try {
-      const id = req.params.id;
-      const opers = await Operator.getTestOperatorLike(id);
+      const opers = await Operator.getByOperId(req.params.id);
       res.json(opers);
     } catch (error) {
       return errorHandler(error, req, res);
+    }
+  });
+
+router
+  .route('/create')
+  .post(async (req, res, next) => {
+    try {
+      const oper = await Operator.create(req.body);
+      res.status(httpStatus.CREATED);
+      res.json(req.body);
+      return res;
+    } catch (error) {
+      next(mongoErrorHandler(error));
     }
   });
 

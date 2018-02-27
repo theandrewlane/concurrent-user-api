@@ -1,83 +1,99 @@
-const {request} = require('../../../config/helpers');
-const app = require('../index');
-const Operator = require('./operator-model');
-const httpStatus = require('http-status');
+const {request} = require('../../../config/helpers'),
+  app = require('../index'),
+  Operator = require('./operator-model'),
+  OperatorType = require('../operator-type/operator-type-model'),
+  httpStatus = require('http-status');
 
-const keys = ['id', 'name', 'email'];
+const testOpers = {
+  user1: {
+    operator_id: 'user1',
+    operator_type_id: 'drscan',
+    isAvailable: true,
+    password: '123456'
+  },
+  user2: {
+    operator_id: 'user2',
+    operator_type_id: 'viewer',
+    isAvailable: false,
+    password: '123456'
+  },
+  user3: {
+    operator_id: 'user3',
+    operator_type_id: 'viewer',
+    isAvailable: false,
+    password: '123456'
+  },
+  user4: {
+    operator_id: 'user4',
+    operator_type_id: 'drscan',
+    isAvailable: true,
+    password: '123456'
+  }
+};
 
-async function transform(user) {
-  const formated = user;
-
-  delete formated._id;
-  delete formated.__v;
-  delete formated.createdAt;
-  delete formated.updatedAt;
-  delete formated.password;
-
-  return formated;
-}
-
-before(async () => {
-  const testOpers = {
-    testUser1: {
-      operatorId: 'testUser1',
-      isAvailable: true,
-      password: '123456'
-    },
-    testUser2: {
-      operatorId: 'testUser2',
-      isAvailable: false,
-      password: '123456'
-    },
-    testUser3: {
-      operatorId: 'testUser3',
-      isAvailable: false,
-      password: '123456'
-    },
-    testUser4: {
-      operatorId: 'testUser4',
-      isAvailable: true,
-      password: '123456'
-    }
-  };
-  const seedUsers = {
-    user1: {
-      operatorId: 'Testuser1',
-      testOperators: [testOpers.testUser1, testOpers.testUser3],
-      password: '123456'
-    },
-    user2: {
-      operatorId: 'Testuser2',
-      testOperators: [testOpers.testUser2, testOpers.testUser4],
-      password: '123456'
-    },
-    user4: {
-      operatorId: 'Testuser3',
-      testOperators: testOpers.testUser4,
-      password: '123456'
-    }
-  };
-
-  const newUser = {
-    name: 'Testuser3',
-    email: 'test3@test.com',
+const newOper1 = {
+    operator_id: 'newOper1',
+    operator_type_id: 'drscan',
+    isAvailable: true,
+    password: '123456'
+  },
+  newOper2 = {
+    operator_id: 'newOper2',
+    operator_type_id: 'asdlkjaasfd',
+    isAvailable: true,
     password: '123456'
   };
 
+const testType1 = {
+    _id: 'drscan',
+    source_system: true,
+    communications: false,
+    type_description: 'Just a basic oper yo'
+  },
+  testType2 = {
+    _id: 'viewer',
+    source_system: true,
+    communications: true,
+    type_description: 'Basic oper yo'
+  };
+
+before(async () => {
+  await OperatorType.remove({});
+  await OperatorType.insertMany([testType1, testType2]);
   await Operator.remove({});
-  await Operator.insertMany([seedUsers.user1, seedUsers.user2, seedUsers.user4]);
+  await Operator.insertMany([testOpers.user1, testOpers.user2, testOpers.user4]);
+
 });
 
-describe('Routes: Operator', () => {
-  describe('GET /user', () => {
-    it('should return a list of users', (done) => {
-      request
-        .get('/operators')
-        .end(async (err, res) => {
-          console.log(res);
-        //  console.log('ooooo', err);
-          done(err);
-        });
-    });
+describe('POST /operator/create', () => {
+  it('should create an operator', done => {
+    request.post('/operator/create')
+      .send(newOper1)
+      .end((err, res) => {
+        console.log(err);
+        expect(res.status).to.be.equal(httpStatus.CREATED);
+        done(err);
+      });
+  });
+
+  xit('should not create a operator if type does not exist', done => {
+    request.post('/operator/create')
+      .send(newOper2)
+      .end((err, res) => {
+        expect(res.status).to.be.equal(httpStatus['404']);
+        expect(res.error.text).to.include('Unique field validation Error');
+        done(err);
+      });
+  });
+
+  it('should not create an operator when operator_id is not provided', done => {
+    delete newOper1.operator_id;
+    request.post('/operator/create')
+      .send(newOper1)
+      .end((err, res) => {
+        expect(res.status).to.be.equal(httpStatus.BAD_REQUEST);
+        expect(res.error.text).to.include('Required field not provided');
+        done(err);
+      });
   });
 });

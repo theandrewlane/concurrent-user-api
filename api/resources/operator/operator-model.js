@@ -1,48 +1,64 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const _ = require('lodash');
-const httpStatus = require('http-status');
-const APIError = require('../../utils/APIError');
-const {env} = require('../../../config/vars');
-const {mongoErrorHandler} = require('../../middlewares/error');
+const mongoose = require('mongoose'),
+  Schema = mongoose.Schema,
+  _ = require('lodash'),
+  httpStatus = require('http-status'),
+  APIError = require('../../utils/APIError'),
+  {env} = require('../../../config/vars'),
+  {mongoErrorHandler} = require('../../middlewares/error'),
+  operatorTypes = require('../operator-type/operator-type-model');
 
 const operatorSchema = new Schema({
   operator_id: {
     type: String,
     maxlength: 60,
     index: true,
-    trim: true
+    trim: true,
+    unique: true
   },
   operator_type_id: {
     type: String,
-    maxlength: 60
+    maxlength: 60,
+    required: true
   },
   password: {
     type: String,
     maxlength: 60,
     trim: true,
     default: 'Tester01'
+  },
+  isAvailable: {
+    type: Boolean,
+    default: true
   }
-
 }, {
   timestamps: true
+});
+
+//Make sure an operator has a valid type
+operatorSchema.pre('save', async function save(next) {
+  try {
+    const result = await operatorTypes.getByTypeId(this.operator_type_id);
+    if (!_.isUndefined(result)) {
+      return next();
+    }
+  } catch (error) {
+    return next(error);
+  }
 });
 
 operatorSchema.method({
   transform() {
     const transformed = {};
-    const fields = ['id', 'operatorId', 'password', 'testOperators'];
-
+    const fields = ['operator_id', 'operator_type_id', 'password', 'isAvailable'];
     fields.forEach((field) => {
       transformed[field] = this[field];
     });
-
     return transformed;
   }
 });
 
 operatorSchema.statics = {
-  async getOperatorById(id) {
+  async getBy_Id(id) {
     let operator;
     try {
       operator = await this.findById(id).exec();
@@ -50,8 +66,9 @@ operatorSchema.statics = {
       if (operator) {
         return operator;
       }
+
       throw new APIError({
-        message: 'User does not exist',
+        message: `Operator with Id:${id} does not exist`,
         status: httpStatus.NOT_FOUND
       });
     } catch (error) {
@@ -59,71 +76,87 @@ operatorSchema.statics = {
     }
   },
 
-  async getOperatorByOperId(operatorId) {
-    let oper;
+  async getByOperId(operatorId) {
+    let operator;
     try {
-      oper = await this.find({operatorId}).exec();
-      if (oper.length) {
-        return oper;
+      operator = await this.find({operator_id: operatorId}).exec();
+      if (operator.length) {
+        return operator;
       }
       throw new APIError({
-        message: 'Operator does not exist',
+        message: `Operator ${operatorId} does not exist`,
         status: httpStatus.NOT_FOUND
       });
     } catch (error) {
       throw error;
     }
   },
-  getOperators() {
+
+  listAll() {
     return this.find()
       .sort({createdAt: -1})
       .exec();
   },
 
-  async getTestOperatorLike(operatorId) {
-    let oper, testOperator, operators;
+  async setOperAvailability(operatorId, availability) {
+    let operator;
     try {
-      oper = await this.getOperatorByOperId(operatorId);
-      oper = oper[0];
-      operators = oper.testOperators;
-      testOperator = await (oper.testOperators).filter((tOper) => tOper.isAvailable)[0];
-      if (!_.isUndefined(testOperator)) {
-        testOperator.isAvailable = false;
-        await this.findByIdAndUpdate(oper._id, {
-          $set: {testOperators: operators}
+      operator = await this.getByOperId(operatorId);
+      operator = operator[0];
+      if (!_.isUndefined(operator)) {
+        if (operator.isAvailable === availability) {
+          throw new APIError({
+            message: `${operatorId}'s isAvailabile is already set to ${availability}`,
+            status: httpStatus.CONFLICT
+          });
+        }
+        await this.findByIdAndUpdate(operator._id, {
+          $set: {isAvailable: availability}
         });
-        return testOperator;
+      } else {
+        throw new APIError({
+          message: `Operator ${operatorId} does not exist`,
+          status: httpStatus.NOT_FOUND
+        });
       }
-      throw new APIError({
-        message: 'No Available Operators',
-        status: httpStatus.NOT_FOUND
-      });
     } catch (error) {
       throw error;
     }
   },
 
-  async setTestOperatorAvailable(operatorId, testOperatorId) {
-    let oper, testOperator, operators;
+  async getAvailableOperByType(operatorTypeId) {
+    let operator;
     try {
-      oper = await this.getOperatorByOperId(operatorId);
-      oper = oper[0];
-      operators = oper.testOperators;
-      testOperator = await (oper.testOperators).filter((tOper) => tOper.operatorId === testOperatorId)[0];
-      if (!_.isUndefined(testOperator)) {
-        testOperator.isAvailable = true;
-        await this.findByIdAndUpdate(oper._id, {
-          $set: {testOperators: operators}
+      operator = await this.find({operator_type_id: operatorTypeId}).where('isAvailable')
+        .equals(true).limit(1).exec();
+      if (_.isUndefined(operator)) {
+        throw new APIError({
+          message: `No available operators of type ${operatorTypeId} were found.`,
+          status: httpStatus.NOT_FOUND
         });
-
-        return testOperator;
       }
-      throw new APIError({
-        message: 'No Available Operators',
-        status: httpStatus.NOT_FOUND
-      });
+      return operator;
     } catch (error) {
       throw error;
+    }
+  },
+
+  async create(operatorObj) {
+    const Operator = mongoose.model('Operator', operatorSchema);
+    let operator;
+    try {
+      operator = new Operator(operatorObj);
+      await operator.save();
+    } catch (error) {
+      console.log(error);
+      if (error.code === 11000) {
+        throw new APIError({
+          message: error.errmsg,
+          status: httpStatus['409']
+        });
+      } else {
+        throw error;
+      }
     }
   }
 };
