@@ -1,5 +1,17 @@
 
 # Created by https://www.gitignore.io/api/node
+*.iml
+.DS_Store
+.idea/
+node_modules/
+dist/
+results/
+target
+.sonar/
+server/uploads/
+*.log
+tmp/
+
 
 ### Node ###
 # Logs
