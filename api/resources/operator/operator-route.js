@@ -7,7 +7,7 @@ const router = express.Router();
 
 router
   .route('/')
-  .get(async (req, res, next) => {
+  .get(async(req, res, next) => {
     try {
       const opers = await Operator.getOperators();
       const transformedUsers = opers.map(oper => oper.transform());
@@ -16,7 +16,7 @@ router
       next(error);
     }
   })
-  .patch(async (req, res, next) => {
+  .patch(async(req, res, next) => {
     try {
       const operator = req.params.operator;
       const testOperator = req.params.testOperator;
@@ -29,7 +29,7 @@ router
   });
 
 router.route('/:id')
-  .get(async (req, res, next) => {
+  .get(async(req, res, next) => {
     try {
       const id = req.params.id;
       const opers = await Operator.getTestOperatorLike(id);

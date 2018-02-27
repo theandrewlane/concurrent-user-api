@@ -1,40 +1,32 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const bcrypt = require('bcryptjs');
-const ObjectId = mongoose.Schema.Types.ObjectId;
 const _ = require('lodash');
-
-// const testOperators = require('./test-operator-model');
 const httpStatus = require('http-status');
 const APIError = require('../../utils/APIError');
 const {env} = require('../../../config/vars');
 const {mongoErrorHandler} = require('../../middlewares/error');
 
-const testOperatorsSchema = new Schema({
-  operatorId: String,
-  password: String,
-  isAvailable: Boolean
-});
-
-// mongoose.model('testOperator', testOperatorsSchema, 'testOperator');
 const operatorSchema = new Schema({
-  operatorId: {
+  operator_id: {
     type: String,
     maxlength: 60,
     index: true,
     trim: true
+  },
+  operator_type_id: {
+    type: String,
+    maxlength: 60
   },
   password: {
     type: String,
     maxlength: 60,
-    index: true,
-    trim: true
-  },
-  testOperators: [testOperatorsSchema]
+    trim: true,
+    default: 'Tester01'
+  }
+
 }, {
   timestamps: true
 });
-
 
 operatorSchema.method({
   transform() {
