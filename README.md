@@ -1,6 +1,6 @@
 # An API For Managing Concurrent Users
 
-## Quick Start
+* Project Quick Start:
 
     * Spin up A MongoDB
     ```
@@ -21,7 +21,6 @@
     ```
         npm test
     ```
-
 
 ## Mongo Express DB View
 
