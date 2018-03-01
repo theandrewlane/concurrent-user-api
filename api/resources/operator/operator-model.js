@@ -99,20 +99,37 @@ operatorSchema.statics = {
       .exec();
   },
 
-  async setOperAvailability(operatorId, availability) {
+  async setOperAvailability(operatorObject) {
     let operator;
+    if (_.isUndefined(operatorObject.operator_id) || _.isUndefined(operatorObject.isAvailable)) {
+      throw new APIError({
+        message: `Must provide operator_id and isAvailable`,
+        status: httpStatus.BAD_REQUEST
+      });
+    }
+
+    if (!_.isBoolean(operatorObject.isAvailable)) {
+      throw new APIError({
+        message: 'isAvailable must be a Boolean',
+        status: httpStatus.BAD_REQUEST
+      });
+    }
+
     try {
+      const operatorId = operatorObject.operator_id;
+      const operatorAvailbility = operatorObject.isAvailable;
+
       operator = await this.getByOperId(operatorId);
       operator = operator[0];
       if (!_.isUndefined(operator)) {
-        if (operator.isAvailable === availability) {
+        if (operator.isAvailable === operatorAvailbility) {
           throw new APIError({
-            message: `${operatorId}'s isAvailabile is already set to ${availability}`,
+            message: `${operatorId}'s isAvailabile is already set to ${operatorAvailbility}`,
             status: httpStatus.CONFLICT
           });
         }
         await this.findByIdAndUpdate(operator._id, {
-          $set: {isAvailable: availability}
+          $set: {isAvailable: operatorAvailbility}
         });
       } else {
         throw new APIError({

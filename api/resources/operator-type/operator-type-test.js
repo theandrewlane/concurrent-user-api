@@ -44,41 +44,12 @@ before(async () => {
   await OperatorType.insertMany([testOpers.user1, testOpers.user2, testOpers.user3]);
 });
 
-xdescribe('POST /user', () => {
-  it('should create an operator', done => {
-    request.post('/user')
-      .send(newUser)
-      .end((err, res) => {
-        expect(res.status).to.be.equal(httpStatus.CREATED);
-        done(err);
-      });
-  });
-
-  it('should not create a user when email already exists', done => {
-    newUser.email = seedUsers.user1.email;
-
-    request.post('/user')
-      .send(newUser)
-      .end((err, res) => {
-        expect(res.status).to.be.equal(httpStatus.CONFLICT);
-
-        expect(res.error.text).to.include('Unique field validation Error');
-
-        done(err);
-      });
-  });
-
-  it('should not create a user when email is not provided', done => {
-    delete newUser.email;
-
-    request.post('/user')
-      .send(newUser)
-      .end((err, res) => {
-        expect(res.status).to.be.equal(httpStatus.BAD_REQUEST);
-
-        expect(res.error.text).to.include('Required field not provided');
-
-        done(err);
-      });
+xdescribe('Routes: operator-type (async)', () => {
+  describe('GET /', () => {
+    it('should return a list of operator types', async () => {
+      const res = request.get('/operator-types');
+      expect(res.status).to.be.equal(httpStatus.OK);
+      expect(res.body.length).to.be.equal(3);
+    });
   });
 });

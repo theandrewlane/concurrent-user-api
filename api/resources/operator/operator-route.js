@@ -54,4 +54,18 @@ router
     }
   });
 
+
+router
+  .route('/update')
+  .post(async (req, res, next) => {
+    try {
+      const oper = await Operator.setOperAvailability(req.body);
+      res.status(httpStatus.OK);
+      res.json(oper);
+      return res;
+    } catch (error) {
+      next(mongoErrorHandler(error));
+    }
+  });
+
 module.exports = router;

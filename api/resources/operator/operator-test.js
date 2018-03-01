@@ -62,12 +62,58 @@ before(async () => {
   await OperatorType.insertMany([testType1, testType2]);
   await Operator.remove({});
   await Operator.insertMany([testOpers.user1, testOpers.user2, testOpers.user3, testOpers.user4]);
-
 });
 
-describe('Routes: Operator', () => {
+describe('Routes: Operator (async)', () => {
+  describe('POST /operator/update', () => {
+    it('should update operator availability', async () => {
+      let res1, res2, res3, res4;
+      res1 = await request.post('/operator/update')
+        .send({operator_id: testOpers.user2.operator_id, isAvailable: true});
+      expect(res1.status).to.be.equal(httpStatus.OK);
 
-  xdescribe('POST /operator/create', () => {
+      res2 = await request
+        .get(`/operator/${testOpers.user2.operator_id}`);
+      expect(res2.status).to.be.equal(httpStatus.OK);
+      expect(res2.body[0].operator_id).to.be.equal('user2');
+      expect(res2.body[0].isAvailable).to.be.equal(true);
+
+      res3 = await request.post('/operator/update')
+        .send({operator_id: testOpers.user2.operator_id, isAvailable: false});
+      expect(res3.status).to.be.equal(httpStatus.OK);
+
+      res4 = await request
+        .get(`/operator/${testOpers.user2.operator_id}`);
+      expect(res4.status).to.be.equal(httpStatus.OK);
+      expect(res4.body[0].operator_id).to.be.equal('user2');
+      expect(res4.body[0].isAvailable).to.be.equal(false);
+    });
+
+    it('should throw error if availibility is not changed', async () => {
+      const res1 = await request.post('/operator/update')
+        .send({operator_id: testOpers.user2.operator_id, isAvailable: false});
+      expect(res1.status).to.be.equal(httpStatus.CONFLICT);
+      expect(res1.error.text).to.include('isAvailabile is already set to false');
+    });
+
+    it('should throw error if isAvailable is not a Boolean', async () => {
+      const res1 = await request.post('/operator/update')
+        .send({operator_id: testOpers.user2.operator_id, isAvailable: 'not a bool!'});
+      expect(res1.status).to.be.equal(httpStatus.BAD_REQUEST);
+      expect(res1.error.text).to.include('isAvailable must be a Boolean');
+    });
+
+    it('should throw error if missing data', async () => {
+      const res1 = await request.post('/operator/update')
+        .send({operator_id: testOpers.user2.operator_id});
+      expect(res1.status).to.be.equal(httpStatus.BAD_REQUEST);
+      expect(res1.error.text).to.include('Must provide operator_id and isAvailable');
+    });
+  });
+});
+
+describe('Routes: Operator (sync)', () => {
+  describe('POST /operator/create', () => {
     it('should create an operator', done => {
       request.post('/operator/create')
         .send(newOper1)
@@ -110,70 +156,65 @@ describe('Routes: Operator', () => {
     });
   });
 
-    xdescribe('GET /operator', () => {
-
-      it('should return a list of operators', (done) => {
-        request
-          .get('/operator')
-          .end(async (err, res) => {
-            expect(res.status).to.be.equal(httpStatus.OK);
-            expect(res.body.length).to.be.equal(5);
-            expect(res.body[0].operator_id).to.be.equal('newOper1');
-            expect(res.body[0].operator_type_id).to.be.equal('drscan');
-            expect(res.body[0].isAvailable).to.be.equal(true);
-            expect(res.body[0].password).to.be.equal('123456');
-            done(err);
-          });
-      });
-
-      it('should return specific user details', (done) => {
-        request
-          .get(`/operator/${testOpers.user1.operator_id}`)
-          .end(async (err, res) => {
-            expect(res.status).to.be.equal(httpStatus.OK);
-            expect(res.body[0].operator_id).to.be.equal('user1');
-            expect(res.body[0].operator_type_id).to.be.equal('drscan');
-            expect(res.body[0].isAvailable).to.be.equal(true);
-            expect(res.body[0].password).to.be.equal('123456');
-            done(err);
-          });
-      });
+  describe('GET /operator', () => {
+    it('should return a list of operators', (done) => {
+      request
+        .get('/operator')
+        .end(async (err, res) => {
+          expect(res.status).to.be.equal(httpStatus.OK);
+          expect(res.body.length).to.be.equal(5);
+          expect(res.body[0].operator_id).to.be.equal('newOper1');
+          expect(res.body[0].operator_type_id).to.be.equal('drscan');
+          expect(res.body[0].isAvailable).to.be.equal(true);
+          expect(res.body[0].password).to.be.equal('123456');
+          done(err);
+        });
     });
 
-    describe('POST /operator/type', () => {
-      it('should return available operator by type', () => {
-        request.post('/operator/type')
-          .send({'operator_type_id': 'dssrscan'})
-          .end((err, res) => {
-            expect(res.status).to.be.equal(httpStatus.NOT_FOUND);
-            expect(res.error.text).to.include('APIError: No available operators of type dssrscan were found.');
-            done(err);
-          });
-      });
+    it('should return specific user details', (done) => {
+      request
+        .get(`/operator/${testOpers.user1.operator_id}`)
+        .end(async (err, res) => {
+          expect(res.status).to.be.equal(httpStatus.OK);
+          expect(res.body[0].operator_id).to.be.equal('user1');
+          expect(res.body[0].operator_type_id).to.be.equal('drscan');
+          expect(res.body[0].isAvailable).to.be.equal(true);
+          expect(res.body[0].password).to.be.equal('123456');
+          done(err);
+        });
+    });
+  });
 
-      it('should not return operator if not available', () => {
-        request.post('/operator/type')
-          .send({'operator_type_id': 'viewer'})
-          .end((err, res) => {
-            expect(res.status).to.be.equal(httpStatus.NOT_FOUND);
-            expect(res.error.text).to.include('APIError: No available operators of type viewer were found.');
-            done(err);
-          });
-      });
-
-      it('should not return operator if not available', () => {
-        request.post('/operator/type')
-          .send({'operator_type_id': 'viewer'})
-          .end((err, res) => {
-            expect(res.status).to.be.equal(httpStatus.NOT_FOUND);
-            expect(res.error.text).to.include('APIError: No available operators of type viewer were found.');
-            done(err);
-          });
-      });
+  describe('POST /operator/type', () => {
+    it('should return available operator by type', () => {
+      request.post('/operator/type')
+        .send({'operator_type_id': 'dssrscan'})
+        .end((err, res) => {
+          expect(res.status).to.be.equal(httpStatus.NOT_FOUND);
+          expect(res.error.text).to.include('APIError: No available operators of type dssrscan were found.');
+          done(err);
+        });
     });
 
-    xdescribe('POST /operator/update', () => {
-
+    it('should not return operator if not available', () => {
+      request.post('/operator/type')
+        .send({'operator_type_id': 'viewer'})
+        .end((err, res) => {
+          expect(res.status).to.be.equal(httpStatus.NOT_FOUND);
+          expect(res.error.text).to.include('APIError: No available operators of type viewer were found.');
+          done(err);
+        });
     });
+
+    it('should not return operator if not available', () => {
+      request.post('/operator/type')
+        .send({'operator_type_id': 'viewer'})
+        .end((err, res) => {
+          expect(res.status).to.be.equal(httpStatus.NOT_FOUND);
+          expect(res.error.text).to.include('APIError: No available operators of type viewer were found.');
+          done(err);
+        });
+    });
+  });
 });
 
