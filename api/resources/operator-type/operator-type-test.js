@@ -38,7 +38,7 @@ const newOper2 = {
   type_description: 'It meeee'
 };
 
-before(async () => {
+before(async() => {
   await OperatorType.remove({});
   return OperatorType.insertMany([testOpers.user1, testOpers.user2, testOpers.user3]);
 });

@@ -7,7 +7,7 @@ const router = express.Router();
 
 router
   .route('/')
-  .get(async (req, res, next) => {
+  .get(async(req, res, next) => {
     try {
       const opers = await Operator.listAll();
       const transformedUsers = opers.map(oper => oper.transform());
@@ -19,7 +19,7 @@ router
 
 router
   .route('/:id')
-  .get(async (req, res, next) => {
+  .get(async(req, res, next) => {
     try {
       const opers = await Operator.getByOperId(req.params.id);
       res.json(opers);
@@ -30,7 +30,7 @@ router
 
 router
   .route('/create')
-  .post(async (req, res, next) => {
+  .post(async(req, res, next) => {
     try {
       const oper = await Operator.create(req.body);
       res.status(httpStatus.CREATED);
@@ -43,7 +43,7 @@ router
 
 router
   .route('/type')
-  .post(async (req, res, next) => {
+  .post(async(req, res, next) => {
     try {
       const oper = await Operator.getAvailableByType(req.body);
       res.status(httpStatus.OK);
@@ -57,7 +57,7 @@ router
 
 router
   .route('/update')
-  .post(async (req, res, next) => {
+  .post(async(req, res, next) => {
     try {
       const oper = await Operator.setOperAvailability(req.body);
       res.status(httpStatus.OK);

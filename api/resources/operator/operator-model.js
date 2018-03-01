@@ -152,7 +152,8 @@ operatorSchema.statics = {
         });
       }
       operator = await this.find(operatorTypeId).where('isAvailable')
-        .equals(true).limit(1).exec();
+        .equals(true).limit(1)
+        .exec();
       if (_.isUndefined(operator) || operator.length === 0) {
         throw new APIError({
           message: `No available operators of type ${operatorTypeId.operator_type_id} were found.`,
