@@ -43,7 +43,7 @@ before(async () => {
   return OperatorType.insertMany([testOpers.user1, testOpers.user2, testOpers.user3]);
 });
 
-describe('Routes: operator-type', () => {
+xdescribe('Routes: operator-type', () => {
   describe('GET /', () => {
     it('should return a list of operator types', (done) => {
       request.get('/operator-type').end((err, res) => {

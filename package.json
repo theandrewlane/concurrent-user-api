@@ -10,21 +10,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/theandrewlane/ui-test-user-api.git"
+    "url": "https://github.com/theandrewlane/concurrent-user-api.git"
   },
   "keywords": [
     "Node",
     "Express",
-    "Starter"
+    "API",
+    "POC"
   ],
   "author": "Andrew Lane <theeandrewlane@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/theandrewlane/ui-test-user-api/issues"
+    "url": "https://github.com/theandrewlane/concurrent-user-api/issues"
   },
-  "homepage": "https://github.com/theandrewlane/ui-test-user-api#readme",
+  "homepage": "https://github.com/theandrewlane/concurrent-user-api#readme",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
     "chai-http": "^3.0.0",
     "cors": "^2.8.4",
