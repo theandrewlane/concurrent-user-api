@@ -11,7 +11,7 @@ target
 server/uploads/
 *.log
 tmp/
-
+*.xml
 
 ### Node ###
 # Logs
