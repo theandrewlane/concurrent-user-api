@@ -1,4 +1,6 @@
 # An API For Managing Concurrent Users
+[![Build Status](https://travis-ci.org/theandrewlane/concurrent-user-api.svg?branch=master)](https://travis-ci.org/theandrewlane/concurrent-user-api)
+[![codecov](https://codecov.io/gh/theandrewlane/concurrent-user-api/branch/master/graph/badge.svg)](https://codecov.io/gh/theandrewlane/concurrent-user-api)
 
 * Project Quick Start:
 
