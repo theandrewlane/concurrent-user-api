@@ -15,17 +15,6 @@ router
     } catch (error) {
       next(error);
     }
-  })
-  .post(async (req, res, next) => {
-    try {
-      // const operator = await Operator.getAvailableOperByType(req.body.operator_type_id);
-      const operator = Operator.listAll();
-      console.log(operator);
-      res.status(httpStatus.OK);
-      res.json(req.body);
-    } catch (error) {
-      next(mongoErrorHandler(error));
-    }
   });
 
 router
@@ -46,6 +35,19 @@ router
       const oper = await Operator.create(req.body);
       res.status(httpStatus.CREATED);
       res.json(req.body);
+      return res;
+    } catch (error) {
+      next(mongoErrorHandler(error));
+    }
+  });
+
+router
+  .route('/type')
+  .post(async (req, res, next) => {
+    try {
+      const oper = await Operator.getAvailableByType(req.body);
+      res.status(httpStatus.OK);
+      res.json(oper);
       return res;
     } catch (error) {
       next(mongoErrorHandler(error));

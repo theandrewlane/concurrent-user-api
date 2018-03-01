@@ -13,7 +13,8 @@ const operatorSchema = new Schema({
     maxlength: 60,
     index: true,
     trim: true,
-    unique: true
+    unique: true,
+    required: true
   },
   operator_type_id: {
     type: String,
@@ -124,14 +125,20 @@ operatorSchema.statics = {
     }
   },
 
-  async getAvailableOperByType(operatorTypeId) {
+  async getAvailableByType(operatorTypeId) {
     let operator;
     try {
-      operator = await this.find({operator_type_id: operatorTypeId}).where('isAvailable')
-        .equals(true).limit(1).exec();
-      if (_.isUndefined(operator)) {
+      if (_.isUndefined(operatorTypeId.operator_type_id)) {
         throw new APIError({
-          message: `No available operators of type ${operatorTypeId} were found.`,
+          message: `Must provide an operator type`,
+          status: httpStatus.BAD_REQUEST
+        });
+      }
+      operator = await this.find(operatorTypeId).where('isAvailable')
+        .equals(true).limit(1).exec();
+      if (_.isUndefined(operator) || operator.length === 0) {
+        throw new APIError({
+          message: `No available operators of type ${operatorTypeId.operator_type_id} were found.`,
           status: httpStatus.NOT_FOUND
         });
       }
@@ -148,11 +155,10 @@ operatorSchema.statics = {
       operator = new Operator(operatorObj);
       await operator.save();
     } catch (error) {
-      console.log(error);
       if (error.code === 11000) {
         throw new APIError({
-          message: error.errmsg,
-          status: httpStatus['409']
+          message: error.message,
+          status: httpStatus.BAD_REQUEST
         });
       } else {
         throw error;

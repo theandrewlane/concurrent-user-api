@@ -3,16 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="31c2c30e-2833-4d45-ae1f-e38785ec72b6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/resources/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/resources/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/resources/operator-types/operator-type-model.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/resources/operator-type/operator-type-model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/resources/operator-types/operator-type-route.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/resources/operator-type/operator-type-route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/resources/operator-types/operator-type-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/resources/operator-type/operator-type-test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/resources/operator-type/operator-type-model.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/resources/operator-type/operator-type-model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/resources/operator/operator-model.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/resources/operator/operator-model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/resources/operator/operator-route.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/resources/operator/operator-route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/resources/operator/operator-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/resources/operator/operator-test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/resources/user/user.model.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/resources/user/user.route.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/resources/user/user.test.js" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,61 +18,88 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="operator-test.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/api/resources/operator/operator-test.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="567">
-                  <caret line="99" selection-start-line="99" selection-end-line="99" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="operator-type-test.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/api/resources/operator-type/operator-type-test.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="752">
-                  <caret line="56" column="34" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="operator-route.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/api/resources/operator/operator-route.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="537">
-                  <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="operator-type-model.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/api/resources/operator-type/operator-type-model.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="120">
-                  <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="operator-model.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/api/resources/operator/operator-model.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="430">
-                  <caret line="150" column="23" selection-start-line="150" selection-start-column="23" selection-end-line="150" selection-end-column="23" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="operator-route.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/resources/operator/operator-route.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="590">
+              <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="operator-test.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api/resources/operator/operator-test.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="371">
+              <caret line="155" column="47" selection-start-line="155" selection-start-column="47" selection-end-line="155" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="390">
+                <caret line="26" selection-start-line="26" selection-end-line="26" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="operator-model.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/resources/operator/operator-model.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="298">
+              <caret line="135" column="7" selection-start-line="135" selection-start-column="7" selection-end-line="135" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="model.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/model.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="103">
+              <caret line="314" selection-start-line="314" selection-end-line="314" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LICENSE" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LICENSE">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="77" selection-start-line="19" selection-start-column="77" selection-end-line="19" selection-end-column="77" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="codecov.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/codecov.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="operator-type-route.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/resources/operator-type/operator-type-route.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="49" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -98,6 +121,10 @@
       <find>;</find>
       <find>const</find>
       <find>operator_type_id</find>
+      <find>node-starter</find>
+      <find>console.log</find>
+      <find>&quot;</find>
+      <find>getByOper</find>
     </findStrings>
     <replaceStrings>
       <replace>operatorSchema</replace>
@@ -111,10 +138,12 @@
       <replace>operator</replace>
       <replace>,</replace>
       <replace>_id</replace>
+      <replace>'</replace>
     </replaceStrings>
     <dirStrings>
-      <dir>$PROJECT_DIR$</dir>
       <dir>$PROJECT_DIR$/api</dir>
+      <dir>$PROJECT_DIR$</dir>
+      <dir>$PROJECT_DIR$/api/resources/operator</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -135,7 +164,6 @@
         <option value="$PROJECT_DIR$/api/resources/user/user.route.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/api/resources/operator/operator-type-model.js" />
         <option value="$PROJECT_DIR$/api/resources/operator/types/operator-type-test.js" />
         <option value="$PROJECT_DIR$/api/resources/operator/types/operator-type-route.js" />
@@ -146,11 +174,13 @@
         <option value="$PROJECT_DIR$/api/resources/user/user.test.js" />
         <option value="$PROJECT_DIR$/api/resources/operator-type/operator-type-route.js" />
         <option value="$PROJECT_DIR$/api/resources/index.js" />
-        <option value="$PROJECT_DIR$/api/resources/operator-type/operator-type-model.js" />
         <option value="$PROJECT_DIR$/api/resources/operator-type/operator-type-test.js" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/LICENSE" />
+        <option value="$PROJECT_DIR$/api/resources/operator-type/operator-type-model.js" />
         <option value="$PROJECT_DIR$/api/resources/operator/operator-route.js" />
-        <option value="$PROJECT_DIR$/api/resources/operator/operator-test.js" />
         <option value="$PROJECT_DIR$/api/resources/operator/operator-model.js" />
+        <option value="$PROJECT_DIR$/api/resources/operator/operator-test.js" />
       </list>
     </option>
   </component>
@@ -169,7 +199,7 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="x" value="-860" />
     <option name="y" value="-1125" />
     <option name="width" value="1440" />
@@ -209,6 +239,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -245,8 +277,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -329,11 +359,10 @@
     <option name="totallyTimeSpent" value="6912000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1269" y="-1200" width="1920" height="1200" extended-state="0" />
-    <editor active="true" />
+    <frame x="-1269" y="-1200" width="1920" height="1200" extended-state="6" />
     <layout>
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16400427" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1656017" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -341,7 +370,7 @@
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.329806" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.329806" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -360,12 +389,51 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="completed models, working on unit tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="completed models, working on unit tests" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="1" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/api/resources/operator/operator-test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1485">
+          <caret line="99" selection-start-line="99" selection-end-line="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/resources/operator-type/operator-type-test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="56" column="34" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/resources/operator/operator-route.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/resources/operator-type/operator-type-model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/resources/operator/operator-model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2250">
+          <caret line="150" column="23" selection-start-line="150" selection-start-column="23" selection-end-line="150" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/api/resources/operator/operator-model.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -408,13 +476,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/resources/user/user.model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="19" lean-forward="true" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/api/resources/user/user.model.js" />
     <entry file="file://$PROJECT_DIR$/api/resources/operator/operator-route.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -450,13 +512,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/resources/user/user.test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2775">
-          <caret line="185" column="37" lean-forward="true" selection-start-line="185" selection-start-column="37" selection-end-line="185" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/api/resources/user/user.test.js" />
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -474,13 +530,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/resources/user/user.route.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="47" column="4" lean-forward="true" selection-start-line="38" selection-start-column="1" selection-end-line="47" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/api/resources/user/user.route.js" />
     <entry file="file://$PROJECT_DIR$/api/resources/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -488,13 +538,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/resources/user/user.model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1470">
-          <caret line="98" column="33" lean-forward="true" selection-start-line="98" selection-start-column="33" selection-end-line="98" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/api/resources/user/user.model.js" />
     <entry file="file://$PROJECT_DIR$/config/mongoose.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -539,27 +583,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="615">
-            <caret line="41" column="60" selection-start-line="41" selection-end-line="41" selection-end-column="60" />
-          </first_editor>
-          <second_editor />
+    <entry file="file://$PROJECT_DIR$/api/resources/user/user.test.js" />
+    <entry file="file://$PROJECT_DIR$/api/resources/user/user.route.js" />
+    <entry file="file://$PROJECT_DIR$/api/resources/user/user.model.js" />
+    <entry file="file://$PROJECT_DIR$/api/resources/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="2" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/resources/user/user.test.js">
+    <entry file="file://$PROJECT_DIR$/api/resources/operator-type/operator-type-test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="943">
-          <caret line="85" column="36" lean-forward="true" selection-start-line="85" selection-end-line="86" />
+        <state relative-caret-position="840">
+          <caret line="56" column="34" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/resources/user/user.route.js">
+    <entry file="file://$PROJECT_DIR$/LICENSE">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="37" lean-forward="true" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
+        <state relative-caret-position="285">
+          <caret line="19" column="77" selection-start-line="19" selection-start-column="77" selection-end-line="19" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/codecov.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/resources/operator-type/operator-type-route.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="49" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -570,59 +631,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/resources/operator-type/operator-type-route.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="49" lean-forward="true" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/resources/user/user.model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-101">
-          <caret line="42" column="18" selection-start-line="42" selection-start-column="18" selection-end-line="42" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/resources/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="2" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/resources/operator-type/operator-type-model.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
+        <state relative-caret-position="635">
+          <caret line="44" column="27" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/resources/operator-type/operator-type-test.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/express/lib/router/layer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="752">
-          <caret line="56" column="34" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
+        <state relative-caret-position="245">
+          <caret line="94" column="4" selection-start-line="94" selection-start-column="4" selection-end-line="94" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/resources/operator/operator-route.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
-          <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="390">
+            <caret line="26" selection-start-line="26" selection-end-line="26" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/resources/operator/operator-model.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="150" column="23" selection-start-line="150" selection-start-column="23" selection-end-line="150" selection-end-column="23" />
+        <state relative-caret-position="298">
+          <caret line="135" column="7" selection-start-line="135" selection-start-column="7" selection-end-line="135" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/resources/operator/operator-route.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="590">
+          <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/resources/operator/operator-test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="99" selection-start-line="99" selection-end-line="99" />
+        <state relative-caret-position="371">
+          <caret line="155" column="47" selection-start-line="155" selection-start-column="47" selection-end-line="155" selection-end-column="47" />
         </state>
       </provider>
     </entry>

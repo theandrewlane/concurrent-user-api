@@ -84,6 +84,7 @@ operatorTypeSchema.statics = {
     } catch (error) {
       // Duplicate Record
       if (error.code === 11000) {
+        console.log('hi');
         throw new APIError({
           message: error.errmsg,
           status: httpStatus['409']
