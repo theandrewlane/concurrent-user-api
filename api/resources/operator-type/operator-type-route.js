@@ -7,7 +7,7 @@ const router = express.Router();
 
 router
   .route('/')
-  .get(async (req, res, next) => {
+  .get(async(req, res, next) => {
     try {
       const opers = await OperatorType.listAll();
       res.json(opers);
@@ -15,7 +15,7 @@ router
       next(error);
     }
   })
-  .post(async (req, res, next) => {
+  .post(async(req, res, next) => {
     try {
       await OperatorType.getOperatorType(operator);
       res.status(httpStatus.OK);
@@ -26,7 +26,7 @@ router
   });
 
 router.route('/:id')
-  .get(async (req, res, next) => {
+  .get(async(req, res, next) => {
     try {
       const id = req.params.id;
       const opers = await OperatorType.getTestOperatorLike(id);
