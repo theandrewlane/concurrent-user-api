@@ -57,16 +57,17 @@ const testType1 = {
     type_description: 'Basic oper yo'
   };
 
-before(async () => {
+before(async() => {
   await OperatorType.remove({});
-  await OperatorType.insertMany([testType1, testType2]);
   await Operator.remove({});
-  await Operator.insertMany([testOpers.user1, testOpers.user2, testOpers.user3, testOpers.user4]);
+  await OperatorType.insertMany([testType1, testType2]);
+  return await Operator.insertMany([testOpers.user1, testOpers.user2, testOpers.user3, testOpers.user4]);
 });
+
 
 describe('Routes: Operator (async)', () => {
   describe('POST /operator/update', () => {
-    it('should update operator availability', async () => {
+    it('should update operator availability', async() => {
       let res1, res2, res3, res4;
       res1 = await request.post('/operator/update')
         .send({operator_id: testOpers.user2.operator_id, isAvailable: true});
@@ -89,21 +90,21 @@ describe('Routes: Operator (async)', () => {
       expect(res4.body[0].isAvailable).to.be.equal(false);
     });
 
-    it('should throw error if availibility is not changed', async () => {
+    it('should throw error if availibility is not changed', async() => {
       const res1 = await request.post('/operator/update')
         .send({operator_id: testOpers.user2.operator_id, isAvailable: false});
       expect(res1.status).to.be.equal(httpStatus.CONFLICT);
       expect(res1.error.text).to.include('isAvailabile is already set to false');
     });
 
-    it('should throw error if isAvailable is not a Boolean', async () => {
+    it('should throw error if isAvailable is not a Boolean', async() => {
       const res1 = await request.post('/operator/update')
         .send({operator_id: testOpers.user2.operator_id, isAvailable: 'not a bool!'});
       expect(res1.status).to.be.equal(httpStatus.BAD_REQUEST);
       expect(res1.error.text).to.include('isAvailable must be a Boolean');
     });
 
-    it('should throw error if missing data', async () => {
+    it('should throw error if missing data', async() => {
       const res1 = await request.post('/operator/update')
         .send({operator_id: testOpers.user2.operator_id});
       expect(res1.status).to.be.equal(httpStatus.BAD_REQUEST);
@@ -160,7 +161,7 @@ describe('Routes: Operator (sync)', () => {
     it('should return a list of operators', (done) => {
       request
         .get('/operator')
-        .end(async (err, res) => {
+        .end((err, res) => {
           expect(res.status).to.be.equal(httpStatus.OK);
           expect(res.body.length).to.be.equal(5);
           expect(res.body[0].operator_id).to.be.equal('newOper1');
@@ -174,7 +175,7 @@ describe('Routes: Operator (sync)', () => {
     it('should return specific user details', (done) => {
       request
         .get(`/operator/${testOpers.user1.operator_id}`)
-        .end(async (err, res) => {
+        .end((err, res) => {
           expect(res.status).to.be.equal(httpStatus.OK);
           expect(res.body[0].operator_id).to.be.equal('user1');
           expect(res.body[0].operator_type_id).to.be.equal('drscan');

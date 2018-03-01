@@ -1,26 +1,27 @@
 const {request} = require('../../../config/helpers'),
   app = require('../index'),
   OperatorType = require('./operator-type-model'),
+  Operator = require('../operator/operator-model'),
   httpStatus = require('http-status');
 
 const testOpers = {
   user1: {
-    operator_type_id: 'drscan',
+    _id: 'drscan1',
     source_system: true,
     communications: false,
     type_description: 'Just a basic oper yo'
   },
   user2: {
-    operator_type_id: 'viewer',
+    _id: 'viewer2',
     source_system: true,
     communications: true,
     type_description: 'Basic oper yo'
   },
   user3: {
-    operator_type_id: 'rcorr',
+    _id: 'drscanBRO',
     source_system: true,
-    communications: true,
-    type_description: 'Just a basic comm oper yo'
+    communications: false,
+    type_description: 'Just a basic oper yo'
   }
 };
 
@@ -40,15 +41,18 @@ const newOper2 = {
 
 before(async () => {
   await OperatorType.remove({});
-  await OperatorType.insertMany([testOpers.user1, testOpers.user2, testOpers.user3]);
+  await Operator.remove({});
+  return await OperatorType.insertMany([testOpers.user1, testOpers.user2, testOpers.user3]);
 });
 
-xdescribe('Routes: operator-type (async)', () => {
+describe('Routes: operator-type (async)', () => {
   describe('GET /', () => {
-    it('should return a list of operator types', async () => {
-      const res = request.get('/operator-types');
-      expect(res.status).to.be.equal(httpStatus.OK);
-      expect(res.body.length).to.be.equal(3);
+    it('should return a list of operator types', () => {
+      request.get('/operator-type').end((err, res) => {
+        expect(res.status).to.be.equal(httpStatus.OK);
+        expect(res.body.length).to.be.equal(32);
+        expect(res.body[0].operator_type_id).to.equal(testOpers.user1.operator_type_id);
+      });
     });
   });
 });
