@@ -61,39 +61,119 @@ before(async () => {
   await OperatorType.remove({});
   await OperatorType.insertMany([testType1, testType2]);
   await Operator.remove({});
-  await Operator.insertMany([testOpers.user1, testOpers.user2, testOpers.user4]);
+  await Operator.insertMany([testOpers.user1, testOpers.user2, testOpers.user3, testOpers.user4]);
 
 });
 
-describe('POST /operator/create', () => {
-  it('should create an operator', done => {
-    request.post('/operator/create')
-      .send(newOper1)
-      .end((err, res) => {
-        console.log(err);
-        expect(res.status).to.be.equal(httpStatus.CREATED);
-        done(err);
-      });
+describe('Routes: Operator', () => {
+
+  xdescribe('POST /operator/create', () => {
+    it('should create an operator', done => {
+      request.post('/operator/create')
+        .send(newOper1)
+        .end((err, res) => {
+          expect(res.status).to.be.equal(httpStatus.CREATED);
+          done(err);
+        });
+    });
+
+    it('should not create a operator if operator_type_id is not valid', done => {
+      request.post('/operator/create')
+        .send(newOper2)
+        .end((err, res) => {
+          expect(res.status).to.be.equal(httpStatus.NOT_FOUND);
+          expect(res.error.text).to.include('APIError: Operator type does not exist');
+          done(err);
+        });
+    });
+
+    it('should not create an operator when operator_id is not provided', done => {
+      const failoper = {...newOper1};
+      delete failoper.operator_id;
+      request.post('/operator/create')
+        .send(failoper)
+        .end((err, res) => {
+          expect(res.status).to.be.equal(httpStatus.BAD_REQUEST);
+          expect(res.error.text).to.include('Required field not provided');
+          done(err);
+        });
+    });
+
+    it('should not create an operator if the operator is a duplicate', done => {
+      request.post('/operator/create')
+        .send(newOper1)
+        .end((err, res) => {
+          expect(res.status).to.be.equal(httpStatus.BAD_REQUEST);
+          expect(res.error.text).to.include('APIError: E11000 duplicate key error');
+          done(err);
+        });
+    });
   });
 
-  xit('should not create a operator if type does not exist', done => {
-    request.post('/operator/create')
-      .send(newOper2)
-      .end((err, res) => {
-        expect(res.status).to.be.equal(httpStatus['404']);
-        expect(res.error.text).to.include('Unique field validation Error');
-        done(err);
-      });
-  });
+    xdescribe('GET /operator', () => {
 
-  it('should not create an operator when operator_id is not provided', done => {
-    delete newOper1.operator_id;
-    request.post('/operator/create')
-      .send(newOper1)
-      .end((err, res) => {
-        expect(res.status).to.be.equal(httpStatus.BAD_REQUEST);
-        expect(res.error.text).to.include('Required field not provided');
-        done(err);
+      it('should return a list of operators', (done) => {
+        request
+          .get('/operator')
+          .end(async (err, res) => {
+            expect(res.status).to.be.equal(httpStatus.OK);
+            expect(res.body.length).to.be.equal(5);
+            expect(res.body[0].operator_id).to.be.equal('newOper1');
+            expect(res.body[0].operator_type_id).to.be.equal('drscan');
+            expect(res.body[0].isAvailable).to.be.equal(true);
+            expect(res.body[0].password).to.be.equal('123456');
+            done(err);
+          });
       });
-  });
+
+      it('should return specific user details', (done) => {
+        request
+          .get(`/operator/${testOpers.user1.operator_id}`)
+          .end(async (err, res) => {
+            expect(res.status).to.be.equal(httpStatus.OK);
+            expect(res.body[0].operator_id).to.be.equal('user1');
+            expect(res.body[0].operator_type_id).to.be.equal('drscan');
+            expect(res.body[0].isAvailable).to.be.equal(true);
+            expect(res.body[0].password).to.be.equal('123456');
+            done(err);
+          });
+      });
+    });
+
+    describe('POST /operator/type', () => {
+      it('should return available operator by type', () => {
+        request.post('/operator/type')
+          .send({'operator_type_id': 'dssrscan'})
+          .end((err, res) => {
+            expect(res.status).to.be.equal(httpStatus.NOT_FOUND);
+            expect(res.error.text).to.include('APIError: No available operators of type dssrscan were found.');
+            done(err);
+          });
+      });
+
+      it('should not return operator if not available', () => {
+        request.post('/operator/type')
+          .send({'operator_type_id': 'viewer'})
+          .end((err, res) => {
+            expect(res.status).to.be.equal(httpStatus.NOT_FOUND);
+            expect(res.error.text).to.include('APIError: No available operators of type viewer were found.');
+            done(err);
+          });
+      });
+
+      it('should not return operator if not available', () => {
+        request.post('/operator/type')
+          .send({'operator_type_id': 'viewer'})
+          .end((err, res) => {
+            expect(res.status).to.be.equal(httpStatus.NOT_FOUND);
+            expect(res.error.text).to.include('APIError: No available operators of type viewer were found.');
+            done(err);
+          });
+      });
+    });
+
+    xdescribe('POST /operator/update', () => {
+
+    });
 });
+
