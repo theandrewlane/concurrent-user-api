@@ -39,7 +39,6 @@ const newOper2 = {
 };
 
 before(async () => {
-
   await OperatorType.remove({});
   await OperatorType.insertMany([testOpers.user1, testOpers.user2, testOpers.user3]);
 });

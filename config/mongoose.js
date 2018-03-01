@@ -1,17 +1,16 @@
 const mongoose = require('mongoose');
-const { mongo, env } = require('./vars');
+const {mongo, env} = require('./vars');
 
 mongoose.connection.on('error', (err) => {
-    console.error(`MongoDB connection error: ${err}`);
-    process.exit(-1);
+  console.error(`MongoDB connection error: ${err}`);
+  process.exit(-1);
 });
 
-if (env === 'dev')
-    mongoose.set('debug', true);
+if (env === 'dev')  {mongoose.set('debug', true);}
 
 exports.connect = () => {
-    mongoose.connect(mongo, {
-        keepAlive: 1
-    });
-    return mongoose.connection;
+  mongoose.connect(mongo, {
+    keepAlive: 1
+  });
+  return mongoose.connection;
 };
