@@ -1,4 +1,4 @@
-# An API Designed To Eliminate Concurrency Issues When Running Test Automation In Parallel
+# Eliminate User Concurrency Issues When Running Test Automation In Parallel
 [![Build Status](https://travis-ci.org/theandrewlane/concurrent-user-api.svg?branch=master)](https://travis-ci.org/theandrewlane/concurrent-user-api)
 [![codecov](https://codecov.io/gh/theandrewlane/concurrent-user-api/branch/master/graph/badge.svg)](https://codecov.io/gh/theandrewlane/concurrent-user-api)
 
