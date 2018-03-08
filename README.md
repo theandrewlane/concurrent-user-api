@@ -39,14 +39,12 @@
     type: Boolean,
     default: true
   }
-}
 ```
 
 
 ### Operator_Type Schema:
 
 ```
-{
  _id: String,
   source_system: {
     type: String,
@@ -60,11 +58,10 @@
     type: String,
     maxlength: 120
   }
-}
 ```
 
 ### Recommended Database Viewer - [mongo-express](https://hub.docker.com/_/mongo-express/)
-* Assuming you're already running a docker monogodb instance called api-mongo!
+* Assumption: A docker monogodb instance called api-mongo is already running.
 ```
 docker run --link api-mongo:mongo -p 8081:8081 mongo-express
 ```
@@ -76,11 +73,11 @@ docker run --link api-mongo:mongo -p 8081:8081 mongo-express
     * Spin up A MongoDB (docker is easiest! 🤓)
     ```
     docker run -p 52001:27017 --name api-mongo -d mongo
-
     ```
     
     * Install Dependencies
-    ```yarn
+    ```
+    yarn
     ```
     
     * Start the API server
