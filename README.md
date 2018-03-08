@@ -82,16 +82,16 @@ docker run --link api-mongo:mongo -p 8081:8081 mongo-express
     
     * Start the API server
     ```
-        npm start
+    npm start
     ```
 
     * Run the API in dev mode (watches for changes)
     ```
-        npm run dev
+    npm run dev
     ```
 
     * Run Mocha tests:
     ```
-        npm test
+    npm test
     ```
     
